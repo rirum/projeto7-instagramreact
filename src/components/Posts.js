@@ -1,4 +1,8 @@
 export default function Posts(){
+const iPost =[
+  
+]
+
     return (
 <div class="posts">
           <div class="post" data-test="post">
