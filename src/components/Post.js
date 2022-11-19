@@ -1,10 +1,17 @@
+import React from "react";
 export default function Post(props){
+    const [salvar, setSalvar] = React.useState("bookmark-outline");
+    function salvarPost() {
+        if (salvar === "bookmark-outline") {setSalvar("bookmark");
+    } else {
+        setSalvar("bookmark-outline");
+    }}
     return (
         <div class="posts">
             <div class="post" data-test="post">
             <div class="topo">
               <div class="usuario">
-                <img src={props.imagem} />
+                <img src={props.imagem} alt={props.nome}/>
                 {props.nome}
               </div>
               <div class="acoes">
@@ -13,7 +20,7 @@ export default function Post(props){
             </div>
 
             <div class="conteudo">
-              <img src={props.imagemPost} data-test="post-image"/>
+              <img src={props.imagemPost} alt={props.nome} data-test="post-image"/>
             </div>
 
             <div class="fundo">
@@ -24,12 +31,12 @@ export default function Post(props){
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon name="bookmark-outline" data-test="save-post"></ion-icon>
+                  <ion-icon name={salvar} onClick={salvarPost} data-test="save-post"></ion-icon>
                 </div>
               </div>
 
               <div class="curtidas">
-                <img src={props.imagemCurtida} />
+                <img src={props.imagemCurtida} alt={props.nome} />
                 <div class="texto" data-test="likes-number">
                   Curtido por <strong>{props.usernameCurtida}</strong> e <strong>outras {props.numero} pessoas</strong>
                 </div>
