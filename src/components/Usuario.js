@@ -10,12 +10,12 @@ export default function Usuario(props){
 
 function mudarNome(){
     promptName = prompt("Digite seu nome");
-    setName(`${promptName}`)
+    setName(!promptName ? name : promptName);
 }
 
 function mudarFoto(){
     promptImagem = prompt("Insira um link de imagem");
-    setImagem(`${promptImagem}`)
+    setImagem(!promptImagem ? imagem : promptImagem);
 }
 
     return (
