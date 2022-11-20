@@ -3,7 +3,7 @@ export default function Post(props){
     const [salvar, setSalvar] = React.useState("bookmark-outline");
     const [like, setLike] = React.useState("heart-outline");
     const [classe, setClasse] = React.useState("heart-outline");
-    const [curtidas,setCurtidas] = React.useState(props.curtidas);
+    const [curtidas,setCurtidas] = React.useState(props.numero);
 
 
     function salvarPost() {
@@ -16,13 +16,23 @@ function likePost(){
     if (like === "heart-outline") {
         setLike("heart");
         setClasse("red");
-        setCurtidas(curtidas + 1);
+        setCurtidas(parseFloat(curtidas) + 1);
 }else {
     setLike("heart-outline");
     setClasse("black");
-    setCurtidas(curtidas - 1);
+    setCurtidas (curtidas - 1);
 }
 }
+
+function likeImagem(){
+  if (like === "heart-outline") {
+  setLike("heart");
+  setClasse("red");
+  setCurtidas (parseFloat(curtidas) + 1);
+  } ;
+  }
+
+
 
     return (
         <div class="posts">
@@ -38,7 +48,7 @@ function likePost(){
             </div>
 
             <div class="conteudo">
-              <img src={props.imagemPost} alt={props.nome} data-test="post-image"/>
+              <img src={props.imagemPost} alt={props.nome} onClick={likeImagem} data-test="post-image"/>
             </div>
 
             <div class="fundo">
@@ -49,14 +59,14 @@ function likePost(){
                   <ion-icon name="paper-plane-outline"></ion-icon>
                 </div>
                 <div>
-                  <ion-icon  onClick={salvarPost} name={salvar} data-test="save-post"></ion-icon>
+                  <ion-icon onClick={salvarPost} name={salvar} data-test="save-post"></ion-icon>
                 </div>
               </div>
 
               <div class="curtidas">
                 <img src={props.imagemCurtida} alt={props.nome} />
                 <div class="texto" data-test="likes-number">
-                  Curtido por <strong>{props.usernameCurtida}</strong> e <strong>outras {props.curtidas} pessoas</strong> 
+                  Curtido por <strong>{props.usernameCurtida}</strong> e <strong>outras {curtidas.toLocaleString('pt-BR')} pessoas</strong> 
                 </div>
               </div>
             </div>
